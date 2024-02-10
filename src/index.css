@@ -92,3 +92,12 @@ img {
   padding: 14px;
   border-radius: 5px;
 }
+
+.searchBar input{
+  padding: 8px 10px;
+  border-radius: 5px;
+  width: 20rem; 
+}
+.searchBar:focus {
+  border-color: #007bff; /* Highlight color when focused */
+}

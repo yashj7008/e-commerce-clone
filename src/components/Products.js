@@ -5,9 +5,20 @@ import { STATUSES } from '../store/productSlice'
 import { add } from '../store/cartSlice'
 
 
+
+
+
 const Products = () => {
   // Destructuring state and status from the Redux store
-  const { data: products, status } = useSelector((state) => state.products);
+  let { data: products, status } = useSelector((state) => state.products);
+  const searchTerm = useSelector((state)=> state.searchTerm)
+  
+
+  //console.log(products );
+ // console.log(searchTerm);
+
+ 
+ 
 
   // Redux dispatch function
   const dispatch = useDispatch();
@@ -27,6 +38,11 @@ const Products = () => {
   
   }, [dispatch]); // Include 'dispatch' in the dependency array
    // Empty dependency array means this effect runs once after the initial render
+
+   searchTerm && ( products = products.filter((item)=>(
+       item.title.toLowerCase().includes(searchTerm.toLowerCase())
+)))
+
 
   // Conditional rendering based on the status of the products fetching
   if (status === STATUSES.LOADING) {
